@@ -1,0 +1,74 @@
+body {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden; /* Prevent scrolling */
+    position: relative; /* Positioning for layering */
+}
+
+.background {
+    position: absolute; /* Positioning for layering */
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    bottom: 0; /* Full coverage */
+    background-image: url('/images/minimalist-black-interior-with-black-sofa.jpg'); /* Background image */
+    background-position: center;
+    background-size: cover; /* Ensure the image covers the entire background */
+    filter: blur(0px); /* Apply blur effect */
+    z-index: 1; /* Ensure it's behind the navbar */
+    animation: zoomBackground 5s ease-in-out infinite; /* Animation for zooming effect */
+}
+
+@keyframes zoomBackground {
+    0% {
+        background-size: 100%;
+    }
+    50% {
+        background-size: 110%;
+    }
+    100% {
+        background-size: 100%;
+    }
+}
+
+/* Styles for navigation bar */
+.nav {
+    display: flex; /* Flexbox for layout */
+    justify-content: space-between; /* Space between items */
+    align-items: center; /* Center vertically */
+    padding: 20px 100px; /* Padding around navbar */
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+    color: white; /* Text color */
+    position: relative; /* Keep navbar on top */
+    z-index: 2; /* Ensures it stays on top of the background */
+}
+.nav-left {
+    display: flex; /* Flexbox for logo and title */
+    align-items: center; /* Center vertically */
+    margin-right: auto; /* Push other items to the right */
+}
+
+.nav h1 {
+    margin: 0; /* Remove default margin */
+    font-size: 24px; /* Adjust font size */
+    cursor: pointer; /* Change cursor on hover */
+    transition: color 0.3s; /* Smooth transition for hover effect */
+}
+
+.nav h1:hover {
+    text-decoration: underline; /* Underline on hover */
+    color: #ffcc00; /* Change color on hover for visual feedback */
+}
+.logo{
+    width: 70px;
+    height: 70px;
+    border-radius: 40px;
+    margin-right: 20px;
+}
+.nav-right {
+    margin-left: auto; /* Pushes this section to the right */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
