@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Signup</title>
+  <link rel="stylesheet" type="text/css" href="/stylesheets/usersup.css">
+</head>
+<body>
+    <input type="checkbox" id="show" class="show" />
+    <!-- Title+Button -->
+    <label for="show" class="title">sign up<i class="flag left"></i><i class="flag right"></i></label>
+    <!-- Form -->
+    <form action="" class="form">
+        <!-- First Name -->
+        <div class="group">
+            <div class="col-1">
+                <label for="name">Username</label>
+            </div>
+            <div class="col-2">
+                <input type="text" id="name" placeholder="Username" />
+            </div>
+        </div>
+         <!-- Email -->
+        <div class="group">
+            <div class="col-1">
+                <label for="email">Email</label>
+            </div>
+            <div class="col-2">
+                <input type="email" id="email" placeholder="example@email.com" />
+            </div>
+        </div>
+        
+        <!--contact NO-->
+        <div class="group">
+            <div class="col-1">
+                <label for="contact">contact NO.</label>
+            </div>
+            <div class="col-2">
+                <input type="text" id="contact" placeholder="+91" />
+            </div>
+        </div>
+        <!-- Password -->
+        <div class="group">
+            <div class="col-1">
+                <label for="password">Password</label>
+            </div>
+            <div class="col-2">
+                <input type="password" id="password" placeholder="password" />
+            </div>
+        </div>
+        <div class="center-link">
+        <h4>------------------------------OR------------------------------</h4>
+    </div>
+        <div class="center-link">
+            <a href="/login"><h4>Already have an account</h4></a>
+        </div>
+        <!-- Submit button -->
+        <input type="submit" class="submit" value="submit" />
+    </form>
+</body>
+</html>
