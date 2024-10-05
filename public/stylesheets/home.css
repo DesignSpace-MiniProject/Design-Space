@@ -72,3 +72,66 @@ body {
     align-items: center;
     gap: 20px;
 }
+a {
+    text-decoration: none;
+    color:white;
+  }
+  /* Sidebar styles */
+/* Sidebar styles */
+/* Sidebar styles */
+.sidebar {
+    height: 100%; /* Full-height */
+    width: 0; /* Hidden by default */
+    position: fixed; /* Fixed sidebar */
+    z-index: 3; /* Above other content */
+    top: 0;
+    right: 0; /* Align to right */
+    background-color: rgba(30, 30, 30, 0.95); /* Darker, more modern background */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    transition: 0.4s ease; /* Smooth slide-in/out */
+    padding-top: 60px; /* Padding at top */
+    box-shadow: -4px 0 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+}
+
+.sidebar a {
+    padding: 15px 30px;
+    text-decoration: none;
+    font-size: 22px; /* Slightly smaller text for elegance */
+    color: white;
+    display: block; /* Each item is on a new line */
+    transition: color 0.3s, background-color 0.3s; /* Smooth hover effects */
+}
+
+.sidebar a:hover {
+    background-color: rgba(255, 204, 0, 0.2); /* Highlight background on hover */
+    color: #ffcc00; /* Change text color on hover */
+    padding-left: 40px; /* Smooth slide-in effect on hover */
+}
+
+.sidebar .closebtn {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 36px;
+    cursor: pointer;
+    color: white;
+    transition: color 0.3s ease; /* Smooth hover effect */
+}
+
+.sidebar .closebtn:hover {
+    color: #ffcc00; /* Highlight the close button on hover */
+}
+
+/* Menu button styles */
+.menu-icon {
+    font-size: 30px; /* Size of the icon */
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    transition: color 0.3s ease; /* Smooth hover effect */
+}
+
+.menu-icon:hover {
+    color: #ffcc00; /* Change color on hover */
+}
