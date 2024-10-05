@@ -77,6 +77,7 @@ body {
 .show ~ .title .left {
     left: 0;
     border-right-color: #007bff;
+    border-right-color: rgb(133, 131, 129);
     border-left-color: transparent;
 }
 
@@ -142,7 +143,6 @@ body {
 .col-1,
 .col-2 {
     float: left;
-    
 }
 
 .col-1 {
@@ -216,6 +216,8 @@ input[type="submit"] {
     padding-top: 5%;
 }
 .submit:hover {
+
     color: #007bff;
+    color: rgba(107, 106, 105, 0.918);
     background: rgba(0,0,0,1);
 }

@@ -18,6 +18,7 @@ body {
 }
 
 .title {
+<<<<<<< HEAD
    transform: translateY(-5px);
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
     opacity: 0.9;
@@ -36,6 +37,18 @@ body {
     letter-spacing: 2px;
     color: white;
     background-color: #007bff;
+=======
+    margin-bottom: 0.5em;
+    display: block;
+    background: rgb(133, 131, 129);
+    font-family: 'Nunito', sans-serif;
+    font-size: 22px;
+    padding: 1em;
+    text-transform: uppercase;
+    box-sizing: border-box;
+    text-align: center;
+    cursor: pointer;
+>>>>>>> 4bb13b7affef672b5656d8e3f2f05e3dcec35932
 }
 .user{
 
@@ -55,8 +68,13 @@ body {
     top: 7px;
     border-radius: 2px;
     border: 35px solid;
+<<<<<<< HEAD
     border-top-color: #007bff;
     border-bottom-color: #007bff;
+=======
+    border-top-color: rgb(133, 131, 129);
+    border-bottom-color: rgb(133, 131, 129);
+>>>>>>> 4bb13b7affef672b5656d8e3f2f05e3dcec35932
 }
 
 .show ~ .title {
@@ -76,14 +94,22 @@ body {
 
 .show ~ .title .left {
     left: 0;
+<<<<<<< HEAD
     border-right-color: #007bff;
+=======
+    border-right-color: rgb(133, 131, 129);
+>>>>>>> 4bb13b7affef672b5656d8e3f2f05e3dcec35932
     border-left-color: transparent;
 }
 
 .show ~ .title .right {
     right: 0;
     border-right-color: transparent;
+<<<<<<< HEAD
     border-left-color: #007bff;
+=======
+    border-left-color: rgb(133, 131, 129);
+>>>>>>> 4bb13b7affef672b5656d8e3f2f05e3dcec35932
 }
 
 .show ~ .form {
@@ -215,6 +241,10 @@ input[type="submit"] {
     padding-top: 5%;
 }
 .submit:hover {
+<<<<<<< HEAD
     color: #007bff;
+=======
+    color: rgba(107, 106, 105, 0.918);
+>>>>>>> 4bb13b7affef672b5656d8e3f2f05e3dcec35932
     background: rgba(0,0,0,1);
 }
