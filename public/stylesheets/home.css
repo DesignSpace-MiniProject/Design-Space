@@ -1,23 +1,43 @@
 body {
     margin: 0;
     height: 100vh;
-    overflow: hidden; /* Prevent scrolling */
-    position: relative; /* Positioning for layering */
+    position: relative;
+    background-color: black;
+    color: azure;
 }
 
 .background {
-    position: absolute; /* Positioning for layering */
-    top: 0; 
-    left: 0; 
-    right: 0; 
-    bottom: 0; /* Full coverage */
-    background-image: url('/images/minimalist-black-interior-with-black-sofa.jpg'); /* Background image */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+    background-image: url('/images/minimalist-black-interior-with-black-sofa.jpg');
     background-position: center;
-    background-size: cover; /* Ensure the image covers the entire background */
-    filter: blur(0px); /* Apply blur effect */
-    z-index: 1; /* Ensure it's behind the navbar */
-    animation: zoomBackground 5s ease-in-out infinite; /* Animation for zooming effect */
+    background-size: cover;
+    filter: blur(0px);
+    animation: zoomBackground 5s ease-in-out infinite;
 }
+
+.site-content {
+    position: relative;
+    z-index: 3;
+    padding-top: 453px; /* Adjust to prevent overlap with the navbar */
+}
+
+section {
+    padding-top: 100px; /* Prevent the content from overlapping with the navbar */
+}
+
+.grid-flex {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    flex-grow: 1;
+}
+
 
 @keyframes zoomBackground {
     0% {
@@ -71,4 +91,222 @@ body {
     justify-content: space-between;
     align-items: center;
     gap: 20px;
+}
+a {
+    text-decoration: none;
+    color:white;
+  }
+  /* Sidebar styles */
+/* Sidebar styles */
+/* Sidebar styles */
+.sidebar {
+    height: 100%; /* Full-height */
+    width: 0; /* Hidden by default */
+    position: fixed; /* Fixed sidebar */
+    z-index: 3; /* Above other content */
+    top: 0;
+    right: 0; /* Align to right */
+    background-color: rgba(30, 30, 30, 0.95); /* Darker, more modern background */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    transition: 0.4s ease; /* Smooth slide-in/out */
+    padding-top: 60px; /* Padding at top */
+    box-shadow: -4px 0 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+}
+
+.sidebar a {
+    padding: 15px 30px;
+    text-decoration: none;
+    font-size: 22px; /* Slightly smaller text for elegance */
+    color: white;
+    display: block; /* Each item is on a new line */
+    transition: color 0.3s, background-color 0.3s; /* Smooth hover effects */
+}
+
+.sidebar a:hover {
+    background-color: rgba(255, 204, 0, 0.2); /* Highlight background on hover */
+    color: #ffcc00; /* Change text color on hover */
+    padding-left: 40px; /* Smooth slide-in effect on hover */
+}
+
+.sidebar .closebtn {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 36px;
+    cursor: pointer;
+    color: white;
+    transition: color 0.3s ease; /* Smooth hover effect */
+}
+
+.sidebar .closebtn:hover {
+    color: #ffcc00; /* Highlight the close button on hover */
+}
+
+/* Menu button styles */
+.menu-icon {
+    font-size: 30px; /* Size of the icon */
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    transition: color 0.3s ease; /* Smooth hover effect */
+}
+
+.menu-icon:hover {
+    color: #ffcc00; /* Change color on hover */
+}
+/*alternate contents*/
+.col-text {
+    height:20em;
+  }
+  .grid-flex {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    flex-direction: row; 
+    -webkit-flex-direction: row;
+    -webkit-flex-wrap: wrap;
+    -webkit-justify-content: space-around;
+  }
+  .col {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+  }
+  .col-left {
+    -webkit-box-ordinal-group:-1;
+    -webkit-order: -1;
+    -ms-flex-order: -1;
+    order: -1;
+  }
+  .col-text{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .Aligner-item {
+    width: 60%;
+  }
+  .col-image {
+    background-size: cover;
+    background-position:center center;
+  }
+  
+  @media (max-width: 640px) {
+    .grid-flex {
+      height: 40em;
+      display: -webkit-flex;
+      -webkit-flex-direction: column;
+      flex-direction: column; 
+     }
+    .col {
+      order:vertical;
+    }
+    .col-left {
+      -webkit-box-ordinal-group:0;
+      -webkit-order: 0;
+      -ms-flex-order: 0;
+      order: 0;
+    }
+    .col-text div p {
+      padding: 1em;
+    }
+    .Aligner-item {
+      width: 90%;
+    }
+  }
+  /* Footer Styles */
+.footer {
+    background-color: #1e1e1e; /* Dark background */
+    color: white;
+    padding: 50px 100px; /* Padding around the footer */
+    position: relative;
+    z-index: 3;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; /* Makes the footer responsive */
+}
+
+.footer h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.footer p {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.footer-links,
+.social-links {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links li,
+.social-links li {
+    margin-bottom: 10px;
+}
+
+.footer-links li a,
+.social-links li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+.footer-links li a:hover,
+.social-links li a:hover {
+    color: #ffcc00; /* Hover effect */
+}
+
+.social-links li {
+    display: inline-block;
+    margin-right: 15px;
+}
+
+.social-links li a img {
+    width: 30px;
+    height: 30px;
+}
+
+/* Footer Bottom */
+.footer-bottom {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 14px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1); /* Subtle top border */
+}
+
+/* Responsive Design */
+@media (max-width: 640px) {
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+        padding: 30px 20px;
+    }
+    .footer {
+        padding: 30px 20px;
+    }
+    .footer h2 {
+        font-size: 20px;
+    }
+    .footer-links li {
+        margin-bottom: 8px;
+    }
+    .social-links li a img {
+        width: 25px;
+        height: 25px;
+    }
 }

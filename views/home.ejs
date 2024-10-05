@@ -1,23 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DesignSpace-Home</title>
-  <link rel="stylesheet" href="/stylesheets/home.css">
+    <title>DesignSpace - Home</title>
+
+    <link rel="stylesheet" href="/stylesheets/home.css">
 </head>
 <body>
     <div class="background"></div> <!-- Blurred background -->
     <div class="nav">
         <div class="nav-left">
-        <img class="logo" src="/images/Untitled.png" alt="">
-        <h1>DesignSpace</h1>
+            <img class="logo" src="/images/Untitled.png" alt="Logo">
+            <h1>DesignSpace</h1>
+        </div>
+        <div class="nav-right">
+            <h1>Contact</h1>
+            <a href="/choose"><h1>Login</h1></a>
+            <button id="menu-toggle" class="menu-icon">☰</button> <!-- Slide Menu Toggle Button -->
+        </div>
     </div>
-    <div class="nav-right">
-        <h1>Contact</h1>
-        <h1>Login</h1>
+
+    <!-- Slide-in Sidebar Menu -->
+    <div id="sidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" id="close-menu">&times;</a>
+        <a href="/about">About Us</a>
+        <a href="/services">Services</a>
+        <a href="/portfolio">Portfolio</a>
+        <a href="/contact">Contact</a>
     </div>
+
+    <script src="/javascripts/home.js"></script>
+    <div class="site-content">
+    <section>
+        <div class="grid-flex">
+          <div class="col col-image" style="background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/280406/seattle-botanical-gardens.jpg);">
+          </div>
+          <div class="col col-text">
+            <div class="Aligner-item">
+              <p>&ldquo;I've learned that people will forget what you said, people will forget what you did, but people will never forget how you made them feel.&rdquo;
+                <cite>- Maya Angelou</cite>
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="grid-flex">
+          <div class="col col-image" style="background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/280406/seattle-library-sm.jpg);">
+            &nbsp;
+          </div>
+          <div class="col col-text col-left">
+            <div class="Aligner-item">
+              <p>&ldquo;Simple is good.&rdquo;
+                <cite>- Jim Henson</cite>
+              </p>
+            </div>
+          </div>
+        </div>
+      
+        <div class="grid-flex">
+          <div class="col col-image" style="background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/280406/seattle-skylight-sm.jpg);">
+            &nbsp;
+          </div>
+          <div class="col col-text">
+            <div class="Aligner-item">
+              <p>&ldquo;Everybody has a plan until they get punched in the mouth.&rdquo;
+                <cite>- Mike Tyson</cite>
+              </p>
+            </div>
+          </div>
+        </div>
+      
+        <div class="grid-flex">
+          <div class="col col-image" style="background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/280406/madison-overture.jpg);">
+            &nbsp;
+          </div>
+          <div class="col col-text col-left">
+            <div class="Aligner-item">
+              <p>&ldquo;We are what we pretend to be, so we must be careful about what we pretend to be&rdquo;
+                <cite>- Kurt Vonnegut, Jr.</cite>
+              </p>
+            </div>
+          </div>
+        </div>
+      
+        <div class="grid-flex">
+          <div class="col col-image" style="background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/280406/madison-rainbow.jpg);">
+            &nbsp;
+          </div>
+          <div class="col col-text">
+            <div class="Aligner-item">
+              <p>&ldquo;Perfect is the enemy of good.&rdquo;
+                <cite> - Voltaire</cite>
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
-    
+    <!-- Footer Section -->
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-left">
+            <h2>DesignSpace</h2>
+            <p>Bringing your ideas to life with creative designs.</p>
+        </div>
+        <div class="footer-right">
+            <ul class="social-links">
+                <li><a href="https://facebook.com" target="_blank"><img src="/images/facebook-icon.png" alt="Facebook"></a></li>
+                <li><a href="https://twitter.com" target="_blank"><img src="/images/twitter-icon.png" alt="Twitter"></a></li>
+                <li><a href="https://instagram.com" target="_blank"><img src="/images/instagram-icon.png" alt="Instagram"></a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2024 DesignSpace. All rights reserved.</p>
+    </div>
+</footer>
+
 </body>
-</html>

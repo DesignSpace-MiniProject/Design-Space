@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Signup</title>
+  <link rel="stylesheet" type="text/css" href="/stylesheets/usersup.css">
+</head>
+<body>
+    
+    <!-- Form -->
+    <form action="/usersignup" class="form" method="post">
+        <!-- First Name -->
+        <div class="group">
+            <div class="col-1">
+                <label for="name">Username</label>
+            </div>
+            <div class="col-2">
+                <input type="text" id="name" name="username" placeholder="Username" />
+            </div>
+        </div>
+         <!-- Email -->
+        <div class="group">
+            <div class="col-1">
+                <label for="email">Email</label>
+            </div>
+            <div class="col-2">
+                <input type="email" id="email" name="email" placeholder="example@email.com" />
+            </div>
+        </div>
+        
+        <!--contact NO-->
+        <div class="group">
+            <div class="col-1">
+                <label for="contact">contact NO.</label>
+            </div>
+            <div class="col-2">
+                <input type="text" id="contact" name="contact" placeholder="+91" />
+            </div>
+        </div>
+        <!-- Password -->
+        <div class="group">
+            <div class="col-1">
+                <label for="password">Password</label>
+            </div>
+            <div class="col-2">
+                <input type="password" id="password" name="password" placeholder="password" />
+            </div>
+        </div>
+        <div class="center-link">
+        <h4>------------------------------OR------------------------------</h4>
+    </div>
+        <div class="center-link">
+            <a href="/userlogin"><h4>Already have an account</h4></a>
+        </div>
+        <!-- Submit button -->
+        <input type="submit" class="submit" value="submit" />
+    </form>
+</body>
+</html>
