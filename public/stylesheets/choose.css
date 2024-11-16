@@ -1,7 +1,9 @@
 
 @import url(https://fonts.googleapis.com/css?family=Anonymous+Pro);
 
-
+body{
+    background: #111 url("https://wallpapercave.com/wp/wp2732972.jpg") repeat 0 0;
+}
 .cursor {
     position: relative;
     max-width: 800px; 

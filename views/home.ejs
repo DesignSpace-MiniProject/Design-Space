@@ -3,33 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DesignSpace-Home</title>
+    <title>DesignSpace - Home</title>
     <link rel="stylesheet" href="/stylesheets/home.css">
-   
+    <link rel="preload" href="/stylesheets/home.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/stylesheets/home.css"></noscript>
 </head>
 <body>
     <div class="background"></div> <!-- Blurred background -->
-    <div class="nav">
+    
+    <nav class="nav">
         <div class="nav-left">
-            <img class="logo" src="/images/Untitled.png" alt="Logo">
+            <img class="logo" src="/images/Untitled.png" alt="DesignSpace Logo">
             <h1>DesignSpace</h1>
+            <a href="/about"> <h1>About</h1></a>
         </div>
         <div class="nav-right">
-            <h1>Contact</h1>
+        
             <a href="/choose"><h1>Login</h1></a>
-            <button id="menu-toggle" class="menu-icon">☰</button> <!-- Slide Menu Toggle Button -->
+            <button id="menu-toggle" class="menu-icon" aria-label="Toggle Menu">☰</button>
         </div>
-    </div>
+    </nav>
 
-    <!-- Slide-in Sidebar Menu -->
     <div id="sidebar" class="sidebar">
-        <a href="javascript:void(0)" class="closebtn" id="close-menu">&times;</a>
-        <a href="/about">About Us</a>
+        <a href="javascript:void(0)" class="closebtn" id="close-menu" aria-label="Close Menu">&times;</a>
         <a href="/services">Services</a>
-        <a href="/portfolio">Portfolio</a>
+        <a href="#" id="portfolio-link">Portfolio</a>
+        <div id="portfolio-submenu" class="portfolio-submenu" style="display: none;">
+            <a href="/portfolio">Residential</a>
+            <a href="/commercial">Commercial</a>
+            <a href="/portfolio/conservation">Conservation and Heritage</a>
+           
+        </div>
         <a href="/contact">Contact</a>
     </div>
 
+    
     <script src="/javascripts/home.js"></script>
 </body>
 </html>
