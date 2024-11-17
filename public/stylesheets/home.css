@@ -1,74 +1,243 @@
-body {
+/* ------------------ General Body Styles ------------------ */
+.body {
     margin: 0;
     height: 100vh;
-    overflow: hidden; /* Prevent scrolling */
-    position: relative; /* Positioning for layering */
+    position: relative;
+    background-color: #121212;  /* Dark background */
+    color: #d1d1d1;  /* Light grey text */
+    font-family: 'Arial', sans-serif;
 }
 
-.background {
-    position: absolute; /* Positioning for layering */
-    top: 0; 
-    left: 0; 
-    right: 0; 
-    bottom: 0; /* Full coverage */
-    background-image: url('/images/minimalist-black-interior-with-black-sofa.jpg'); /* Background image */
-    background-position: center;
-    background-size: cover; /* Ensure the image covers the entire background */
-    filter: blur(0px); /* Apply blur effect */
-    z-index: 1; /* Ensure it's behind the navbar */
-    animation: zoomBackground 5s ease-in-out infinite; /* Animation for zooming effect */
+/* ------------------ Hero Image Styles ------------------ */
+.hero-image {
+    position: relative;
+    width: 100%;
+    height: 81.3vh;
+    overflow: hidden;
+    opacity: 1;  /* Set to fully visible */
 }
 
-@keyframes zoomBackground {
-    0% {
-        background-size: 100%;
-    }
-    50% {
-        background-size: 110%;
-    }
-    100% {
-        background-size: 100%;
-    }
+.hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+/* ------------------ Menu Button Styles ------------------ */
+.headermenu {
+    
+    background-color: black;  /* Transparent background */
+    border-radius: 15%;  /* Fully rounded button */
+    color: #f8f8f8;  /* White color for the hamburger icon */
+    font-size: 2rem;  /* Set the font size for the hamburger icon */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;  /* Pointer cursor for interaction */
+    transition: background-color 0.3s, transform 0.3s;  /* Smooth transition */
 }
 
-/* Styles for navigation bar */
+/* Hover effect */
+.headermenu:hover {
+    background-color: black;  /* Light white background on hover */
+    transform: scale(1.1);  /* Slightly enlarge the button on hover */
+}
+
+/* ------------------ Site Content Styles ------------------ */
+.site-content {
+    z-index: 1;
+    position: relative;
+    padding-top: 0;
+}
+
+.grid-flex {
+    height: 40vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0;
+    margin: 0;
+}
+
+.col {
+    flex: 1;
+    padding: 0;
+}
+
+.col-left {
+    order: -1;
+}
+
+/* ------------------ Quote Styling ------------------ */
+.col-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+}
+
+.quote {
+    font-size: 1.3vw;  /* Reduced font size */
+    font-weight: 400;  /* Normal weight for the quote */
+    margin: 0;
+    line-height: 1.5;
+    color: #f8f8f8;  /* Light color for the quote */
+}
+
+.author {
+    font-size: 1.3vw;  /* Reduced font size for author */
+    font-weight: 700;  /* Bold weight for author */
+    margin: 1vh 0 0 0;
+    color: #ffcc00;  /* Yellow color for the author name */
+}
+
+/* ------------------ Navigation Styles ------------------ */
 .nav {
-    display: flex; /* Flexbox for layout */
-    justify-content: space-between; /* Space between items */
-    align-items: center; /* Center vertically */
-    padding: 20px 100px; /* Padding around navbar */
-    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
-    color: white; /* Text color */
-    position: relative; /* Keep navbar on top */
-    z-index: 2; /* Ensures it stays on top of the background */
-}
-.nav-left {
-    display: flex; /* Flexbox for logo and title */
-    align-items: center; /* Center vertically */
-    margin-right: auto; /* Push other items to the right */
-}
-
-.nav h1 {
-    margin: 0; /* Remove default margin */
-    font-size: 24px; /* Adjust font size */
-    cursor: pointer; /* Change cursor on hover */
-    transition: color 0.3s; /* Smooth transition for hover effect */
-}
-
-.nav h1:hover {
-    text-decoration: underline; /* Underline on hover */
-    color: #ffcc00; /* Change color on hover for visual feedback */
-}
-.logo{
-    width: 70px;
-    height: 70px;
-    border-radius: 40px;
-    margin-right: 20px;
-}
-.nav-right {
-    margin-left: auto; /* Pushes this section to the right */
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 20px;
+    padding: 1vh;
+    background-color: #000000;  /* Black background for the nav */
+    color: #f8f8f8;  /* Light color for text */
+    position: relative;
+    z-index: 2;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+}
+
+.nav-title {
+    margin: 0;
+    font-size: 2.4vw;
+    font-weight: 700; /* Bold weight for the brand */
+    cursor: pointer;
+    color: #f8f8f8;
+    transition: color 0.3s;
+}
+
+.nav-title:hover {
+    text-decoration: underline;
+    color: #ffcc00;  /* Yellow color on hover */
+}
+
+.logo {
+    width: 5vw;
+    height: 4vw;
+    border-radius: 15%;
+    margin-right: 2vw;
+}
+
+.nav-right {
+    margin-left: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2vw;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #f8f8f8;  /* Light gray text color */
+    font-size: 1.8vw;
+    font-weight: 600; /* Semi-bold weight for navigation links */
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    color: #ffcc00;  /* Yellow color on hover */
+}
+
+.menu-icon {
+    padding-bottom: 1.3vh;
+    padding-right: 1vh;
+}
+
+/* ------------------ Sidebar Styles ------------------ */
+.sidebar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 3;
+    top: 0;
+    right: 0;
+    background-color: #1a1a1a;  /* Darker background for sidebar */
+    overflow-x: hidden;
+    transition: 0.4s ease;
+    padding-top: 6vh;
+}
+
+.sidebar-link {
+    padding: 1.5vh 3vw;
+    text-decoration: none;
+    font-size: 2.2vw;
+    font-weight: 600;
+    color: #f8f8f8;  /* Light color for sidebar links */
+    display: block;
+    transition: color 0.3s, background-color 0.3s;
+}
+
+.sidebar-link:hover {
+    background-color: rgba(255, 204, 0, 0.2);  /* Subtle yellow background on hover */
+    color: #ffcc00;  /* Yellow text on hover */
+    padding-left: 4vw;
+}
+
+.closebtn {
+    position: absolute;
+    top: 2vh;
+    right: 2.5vw;
+    font-size: 3.6vw;
+    cursor: pointer;
+    color: #f8f8f8;
+}
+
+/* ------------------ Footer Styles ------------------ */
+.footer {
+    background-color: #000000;  /* Black background for footer */
+    color: #f8f8f8;  /* Light text color */
+    padding: 5vh 10vw;
+    position: relative;
+    z-index: 3;
+}
+
+.footer-title {
+    font-size: 2.4vw;
+    font-weight: 700; /* Bold footer title */
+    color: #f8f8f8;  /* Light color for footer title */
+}
+
+.footer-description {
+    font-size: 1.6vw;
+    font-weight: 400; /* Normal weight for description */
+    line-height: 1.5;
+    color: #d1d1d1;  /* Slightly lighter text for description */
+}
+
+.social-links {
+    list-style: none;
+    padding: 0;
+}
+
+.social-link {
+    color: #f8f8f8;  /* Light color for social links */
+    text-decoration: none;
+    font-size: 1.6vw;
+    font-weight: 600; /* Semi-bold weight for social links */
+    transition: color 0.3s;
+}
+
+.social-link:hover {
+    color: #ffcc00;  /* Yellow color on hover */
+}
+
+.footer-bottom {
+    margin-top: 3vh;
+    text-align: center;
+    font-size: 1.4vw;
+    padding-top: 2vh;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: #d1d1d1;  /* Slightly lighter text for footer bottom */
 }
