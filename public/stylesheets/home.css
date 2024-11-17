@@ -109,15 +109,6 @@
     align-items: center;
 }
 
-.nav-title {
-    margin: 0;
-    font-size: 2.4vw;
-    font-weight: 700; /* Bold weight for the brand */
-    cursor: pointer;
-    color: #f8f8f8;
-    transition: color 0.3s;
-}
-
 .nav-title:hover {
     text-decoration: underline;
     color: #ffcc00;  /* Yellow color on hover */
@@ -141,8 +132,6 @@
 .nav-link {
     text-decoration: none;
     color: #f8f8f8;  /* Light gray text color */
-    font-size: 1.8vw;
-    font-weight: 600; /* Semi-bold weight for navigation links */
     transition: color 0.3s;
 }
 
