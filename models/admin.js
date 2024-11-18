@@ -16,12 +16,6 @@ const adminSchema = mongoose.Schema({
         return "DesignSpace@123"; 
       }
   },
-  posts:[{
-    type:mongoose.Schema.Types.ObjectId,
-    ref:'Post',
-  },
-  ],
-
   type: { type: String, default: 'admin' } 
   
 

@@ -1,21 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>admin-profile</title>
-    <link rel="stylesheet" href="/stylesheets/adminprofile.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Profile</title>
+  <link rel="stylesheet" href="/stylesheets/adminprofile.css">
 </head>
 <body>
+  <div class="profile-container">
+    <!-- Admin Info -->
+    <div class="profile-info">
+      <h2>Welcome, <%= admin.username %></h2>
+      <p>Email: <%= admin.email %></p>
+      <p>Contact: <%= admin.contact %></p>
+      <a href="/choose">Logout</a>
+    </div>
+
+    <!-- Upload Portfolio Section -->
+    <div class="upload-portfolio">
+      <h3>Upload Portfolio</h3>
+      <form action="/createpost" method="POST" enctype="multipart/form-data">
+        <label for="title">Post Title:</label>
+        <input type="text" name="title" id="title" required><br>
     
-<main>
-    <img src="data:image/jpeg;base64,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" alt="">
-    <h1><%= user.username%></h1>
-    <p>"Front-end developer and avid reader."</p>
-    <ul>
-      <a href="/add"><li>Upload-Portfolio</li></a>
-      
-    </ul>
-  </main>
+        <label for="description">Post Description:</label>
+        <textarea name="description" id="description" required></textarea><br>
+    
+        <label for="postimage">Upload Image:</label>
+        <input type="file" name="postimage" id="postimage" required><br>
+    
+        <label for="category">Category:</label>
+        <select name="category" id="category" required>
+            <option value="residential">Residential</option>
+            <option value="commercial">Commercial</option>
+            <option value="conservation">Conservation</option>
+        </select><br>
+    
+        <button type="submit">Submit Post</button>
+      </form>
+    </div>
+
+    <!-- Displaying Uploaded Posts -->
+    <% if (residentialPosts.length || commercialPosts.length || conservationPosts.length) { %>
+      <!-- Residential Section -->
+      <% if (residentialPosts.length) { %>
+        <div class="section residential">
+          <h2>Residential</h2>
+          <div class="posts">
+            <% residentialPosts.forEach(function(post) { %>
+              <div class="post">
+                <img src="/images/uploads/<%= post.image %>" alt="<%= post.title %>" />
+                <h3><%= post.title %></h3>
+                <p><%= post.description %></p>
+                <a href="#">Go to Residential Section</a>
+              </div>
+            <% }); %>
+          </div>
+        </div>
+      <% } else { %>
+        <p>No Residential Posts Available</p>
+      <% } %>
+
+      <!-- Commercial Section -->
+      <% if (commercialPosts.length) { %>
+        <div class="section commercial">
+          <h2>Commercial</h2>
+          <div class="posts">
+            <% commercialPosts.forEach(function(post) { %>
+              <div class="post">
+                <img src="/images/uploads/<%= post.image %>" alt="<%= post.title %>" />
+                <h3><%= post.title %></h3>
+                <p><%= post.description %></p>
+                <a href="#">Go to Commercial Section</a>
+              </div>
+            <% }); %>
+          </div>
+        </div>
+      <% } else { %>
+        <p>No Commercial Posts Available</p>
+      <% } %>
+
+      <!-- Conservation Section -->
+      <% if (conservationPosts.length) { %>
+        <div class="section conservation">
+          <h2>Conservation</h2>
+          <div class="posts">
+            <% conservationPosts.forEach(function(post) { %>
+              <div class="post">
+                <img src="/images/uploads/<%= post.image %>" alt="<%= post.title %>" />
+                <h3><%= post.title %></h3>
+                <p><%= post.description %></p>
+                <a href="#">Go to Conservation Section</a>
+              </div>
+            <% }); %>
+          </div>
+        </div>
+      <% } else { %>
+        <p>No Conservation Posts Available</p>
+      <% } %>
+    <% } else { %>
+      <p>No posts available in any category.</p>
+    <% } %>
+  </div>
 </body>
 </html>

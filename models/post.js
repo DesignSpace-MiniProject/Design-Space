@@ -1,17 +1,31 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
+const postSchema = new mongoose.Schema({
+  title: {
+      type: String,
+      required: true
+  },
+  description: {
+      type: String,
+      required: true
+  },
+  category: {
+      type: String,
+      required: true,
+      enum: ['residential', 'commercial', 'conservation'] // Ensure valid categories
+  },
+  image: {
+      type: String,
+      required: true
+  },
+  createdBy: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Admin',
+    required: true // Ensures each post has an associated admin
+  }
+});
 
 
-const postSchema = mongoose.Schema({
-   admin:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:'Admin',
-    },
-
-   title:String,
-   description:String,
-    password:String,
-    image:String,
-  
-  });
-
-  module.exports = mongoose.model('Post',postSchema);
+const Post = mongoose.model('Post', postSchema);
+module.exports = Post;

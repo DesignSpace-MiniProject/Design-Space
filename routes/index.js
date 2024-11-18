@@ -4,44 +4,27 @@ const userModel = require('../models/users');
 const passport = require('passport');
 const adminModel = require('../models/admin');
 const localstrategy = require("passport-local");
-const upload = require("./multer")
+const upload = require("./multer");
+const postModel = require('../models/post');
 
-
-
-
+// Passport setup for user and admin
 passport.use(new localstrategy(userModel.authenticate()));
 passport.use('admin-local', new localstrategy(adminModel.authenticate()));
 
-passport.serializeUser(function(user, done) {
-  done(null, { id: user._id, type: user.secretkey ? 'admin' : 'user' }); 
-});
 
-passport.deserializeUser(async function(obj, done) {
-  try {
-    let user;
-    if (obj.type === 'admin') {
-      user = await adminModel.findById(obj.id);
-    } else {
-      user = await userModel.findById(obj.id);
-    }
-    done(null, user);
-  } catch (error) {
-    done(error);
-  }
-});
 
+// Route to render the home page
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('index', { title: 'Design Space' });
 });
-
 router.get('/home', function(req, res, next) {
   res.render('home');
 });
-
 router.get('/choose', function(req, res, next) {
   res.render('choose');
 });
 
+// Routes for user signup and login
 router.get('/usersignup', function(req, res, next) {
   res.render('usersignup');
 });
@@ -50,14 +33,7 @@ router.get('/userlogin', function(req, res, next) {
   res.render('login');
 });
 
-router.get('/portfolio', function(req, res, next) {
-  res.render('portfolio');
-});
-
-router.get('/commercial', function(req, res, next) {
-  res.render('commercial');
-});
-
+// Admin routes
 router.get('/adminlogin', function(req, res, next) {
   res.render('adminlogin');
 });
@@ -66,74 +42,85 @@ router.get('/adminsignup', function(req, res, next) {
   res.render('adminsignup');
 });
 
-router.get('/adminprofile', isAuthenticated, function(req, res) {
-  if (req.user && req.user.type === 'admin') {
-    res.render('adminprofile', { user: req.user });  
-  } else {
-    res.redirect('/adminlogin'); 
-  }
-});
-
-router.post('/createpost',isLoggedIn,upload.single("postimage") ,async function(req,res,next){
-  const admin=await adminModel.findOne({
-    username:req.session.passport.admin
-  })
-  const post =await postModel.create({
-    admin:admin._id,
-    title:req.body.title,
-    description:req.body.description,
-    image:req.file.filename
-  })
-  user.posts.push(post._id);
-  await user.save();
-  res.redirect("/home");
-});
-
-router.get('/show/posts/:id', async (req, res) => {
+// Admin profile page with posts
+router.get('/adminprofile', isAuthenticated, async function(req, res) {
   try {
-    console.log('User ID:', req.params.id);  
-    const admin = await postModel.findById(req.params.id);
-    console.log(admin);
-    if (!admin) {
-      console.log('User not found');
-      return res.status(404).send('User not found');
-    }
+    if (req.user && req.user.type === 'admin') {
+      const admin = await adminModel.findById(req.user._id);
+      const posts = await postModel.find({createdBy:req.user._id});
+      console.log(admin);
+      if (!admin) {
+        return res.status(404).send('Admin not found');
+      }
 
-    res.render('showpost', {user, nav: true });
+      // Filter posts by category
+      const residentialPosts = posts.filter(post => post.category === 'residential');
+      const commercialPosts = posts.filter(post => post.category === 'commercial');
+      const conservationPosts = posts.filter(post => post.category === 'conservation');
+
+      // Debugging: Check the contents of the posts
+      console.log('Residential Posts:', residentialPosts);
+      console.log('Commercial Posts:', commercialPosts);
+      console.log('Conservation Posts:', conservationPosts);
+
+      res.render('adminprofile', { 
+        admin: admin,
+      residentialPosts: residentialPosts,
+     commercialPosts: commercialPosts,
+      conservationPosts: conservationPosts
+      });
+    } else {
+      res.redirect('/adminlogin');
+    }
   } catch (error) {
-    console.error('Error fetching user:', error);  
-    res.status(500).send('Server error');
+    console.error('Error in /adminprofile:', error);
+    res.status(500).send('Internal Server Error');
   }
 });
 
-router.post('/adminsignup', function(req, res, next) {
-  const data = new adminModel({
-    username: req.body.username,
-    email: req.body.email,
-    contact: req.body.contact,
-    secretkey: req.body.secretkey,
-     type: 'admin'
+// Route for creating a post
+router.post('/createpost', upload.single('postimage'), (req, res) => {
+  console.log("Form Data:", req.body); // Log the form data
+  console.log("Uploaded File:", req.file); // Log the uploaded file
+
+  const { title, description, category } = req.body;
+  const postImage = req.file ? req.file.filename : null;
+
+  // Validate the category and file
+  if (!category || !['residential', 'commercial', 'conservation'].includes(category)) {
+    return res.redirect('/adminprofile?error=Invalid category');
+  }
+
+  if (!postImage) {
+    return res.redirect('/adminprofile?error=Image is required');
+  } 
+
+  // Create a new post object
+  const newPost = new postModel({
+    title,
+    description,
+    image: postImage,
+    category,
+    createdBy:req.user._id,
   });
 
-  adminModel.register(data, req.body.password)
-    .then(function() {
-      passport.authenticate("admin-local")(req, res, function() {
-        res.redirect("/adminprofile");
-      });
+  console.log("New Post Object:", newPost); // Log the post object before saving
+
+  // Save the post
+  newPost.save()
+    .then(() => {
+      res.redirect('/adminprofile');
     })
-    .catch(function(err) {
-      console.error(err);
-      res.redirect("/adminsignup");
+    .catch((err) => {
+      console.error('Error saving post:', err); // Log the error
+      res.status(500).send(`Error creating post: ${err.message}`);
     });
 });
 
-router.get('/add',isLoggedIn,async function(req,res,next){
-  const admin=await adminModel.findOne({
-    username:req.session.passport.admin
-  })
-  res.render("add",{admin}); 
-});
 
+
+
+// Admin login route
 router.post('/adminlogin', function(req, res, next) {
   passport.authenticate('admin-local', function(err, user, info) {
     if (err) {
@@ -150,48 +137,45 @@ router.post('/adminlogin', function(req, res, next) {
         return next(err);
       }
       console.log('Admin successfully logged in:', user);
-      console.log('Session after login:', req.session); 
-       res.redirect('/adminprofile');
+      res.redirect('/adminprofile');
     });
   })(req, res, next);
 });
 
-
-
-
-router.post('/usersignup', function(req, res, next) {
-  const data = new userModel({
+// Admin signup route
+router.post('/adminsignup', function(req, res, next) {
+  const data = new adminModel({
     username: req.body.username,
     email: req.body.email,
     contact: req.body.contact,
+    secretkey: req.body.secretkey,
+    type: 'admin'
   });
-  
-  userModel.register(data, req.body.password)
+
+  adminModel.register(data, req.body.password)
     .then(function() {
-      passport.authenticate("local")(req, res, function() {
-        res.redirect("/home");
+      passport.authenticate("admin-local")(req, res, function() {
+        res.redirect("/adminprofile");
       });
+    })
+    .catch(function(err) {
+      console.error(err);
+      res.redirect("/adminsignup");
     });
 });
 
-router.post('/userlogin', passport.authenticate("local", {
-  failureRedirect: "/",
-  successRedirect: "/home",
-}));
-
+// Middleware to check if the user is logged in (Admin)
 function isAuthenticated(req, res, next) {
-  console.log("Is Authenticated:", req.isAuthenticated());
   if (req.isAuthenticated()) {
-  
     return next();
   }
-  console.log("Redirecting to admin login");
-  res.redirect('/adminlogin'); 
-}
-function isLoggedIn(req,res,next){
-  if(req.isAuthenticated()) return next();
-  res.redirect('/');
+  res.redirect('/adminlogin');
 }
 
+// Middleware to check if the user is logged in (Any user)
+function isLoggedIn(req, res, next) {
+  if (req.isAuthenticated()) return next();
+  res.redirect('/');
+}
 
 module.exports = router;
