@@ -9,16 +9,15 @@
     <noscript><link rel="stylesheet" href="/stylesheets/home.css"></noscript>
 </head>
 <body>
-    <div class="background"></div> <!-- Blurred background -->
+    <div class="background"></div>
     
     <nav class="nav">
         <div class="nav-left">
             <img class="logo" src="/images/Untitled.png" alt="DesignSpace Logo">
             <h1>DesignSpace</h1>
-            <a href="/about"> <h1>About</h1></a>
+            <a href="/about"><h1>About</h1></a>
         </div>
         <div class="nav-right">
-        
             <a href="/choose"><h1>Login</h1></a>
             <button id="menu-toggle" class="menu-icon" aria-label="Toggle Menu">☰</button>
         </div>
@@ -27,17 +26,21 @@
     <div id="sidebar" class="sidebar">
         <a href="javascript:void(0)" class="closebtn" id="close-menu" aria-label="Close Menu">&times;</a>
         <a href="/services">Services</a>
-        <a href="#" id="portfolio-link">Portfolio</a>
-        <div id="portfolio-submenu" class="portfolio-submenu" style="display: none;">
-            <a href="/portfolio">Residential</a>
+        <a href="/portfolio" id="portfolio-link">Portfolio</a>
+        <div id="portfolio-submenu" class="portfolio-submenu">
+            <a href="/residential">Residential</a>
             <a href="/commercial">Commercial</a>
-            <a href="/portfolio/conservation">Conservation and Heritage</a>
-           
+            <a href="/conservation">Conservation and Heritage</a>
         </div>
         <a href="/contact">Contact</a>
     </div>
 
-    
+    <main class="content">
+        <h1 class="main-title">Welcome to DesignSpace</h1>
+        <p class="main-subtitle">Transforming spaces, inspiring lives</p>
+         <a href="/services"><button  class="cta-button">Explore Our Designs</button></a>
+    </main>
+
     <script src="/javascripts/home.js"></script>
 </body>
 </html>

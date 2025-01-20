@@ -5,35 +5,38 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const expressSession = require("express-session");
 const passport = require('passport');
-const User = require('./models/users'); 
-const Admin = require('./models/admin'); 
+const User = require('./models/users');
+const Admin = require('./models/admin');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./models/users');
-var adminsRouter = require('./models/admin');
 
 var app = express();
 
-app.use(express.static(path.join(__dirname, 'public')));
+// View engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+// Middleware setup
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
 
+// Session configuration
 app.use(expressSession({
-  secret: 'yourSecretKey',
+  secret: 'yourSecretKey', // Replace with a strong secret
   resave: false,
-  saveUninitialized: false,
-
+  saveUninitialized: false
 }));
 
-
+// Passport initialization
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Passport serialization
 passport.serializeUser(function(user, done) {
-  done(null, { id: user._id, type: user.secretkey ? 'admin' : 'user' }); 
+  done(null, { id: user._id, type: user.secretkey ? 'admin' : 'user' });
 });
-
 
 passport.deserializeUser(async function(serializedUser, done) {
   try {
@@ -43,7 +46,6 @@ passport.deserializeUser(async function(serializedUser, done) {
     } else {
       user = await User.findById(serializedUser.id);
     }
-
     if (user) {
       done(null, user);
     } else {
@@ -54,25 +56,18 @@ passport.deserializeUser(async function(serializedUser, done) {
   }
 });
 
+// Static files
+app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-
-
-
-
-
+// Routes
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/admins', adminsRouter); 
 
+// Catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
 });
 
-
+// Error handler
 app.use(function(err, req, res, next) {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};

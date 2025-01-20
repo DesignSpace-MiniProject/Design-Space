@@ -1,112 +1,119 @@
-body {
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+* {
     margin: 0;
-    height: 100vh;
-    overflow: hidden; /* Prevent scrolling */
-    position: relative; /* Positioning for layering */
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    color: white;
 }
 
 .background {
-    position: absolute; /* Positioning for layering */
-    top: 0; 
-    left: 0; 
-    right: 0; 
-    bottom: 0; /* Full coverage */
-    background-image: url('/images/minimalist-black-interior-with-black-sofa.jpg'); /* Background image */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('/images/minimalist-black-interior-with-black-sofa.jpg');
     background-position: center;
-    background-size: cover; /* Ensure the image covers the entire background */
-    filter: blur(0px); /* Apply blur effect */
-    z-index: 1; /* Ensure it's behind the navbar */
-    animation: zoomBackground 5s ease-in-out infinite; /* Animation for zooming effect */
+    background-size: cover;
+    filter: blur(0px);
+    z-index: -1;
+    animation: zoomBackground 15s ease-in-out infinite;
 }
 
 @keyframes zoomBackground {
-    0% {
-        background-size: 100%;
-    }
-    50% {
-        background-size: 110%;
-    }
-    100% {
-        background-size: 100%;
-    }
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
 }
 
-/* Styles for navigation bar */
 .nav {
-    display: flex; /* Flexbox for layout */
-    justify-content: space-between; /* Space between items */
-    align-items: center; /* Center vertically */
-    padding: 20px 100px; /* Padding around navbar */
-    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
-    color: white; /* Text color */
-    position: relative; /* Keep navbar on top */
-    z-index: 2; /* Ensures it stays on top of the background */
-}
-.nav-left {
-    display: flex; /* Flexbox for logo and title */
-    align-items: center; /* Center vertically */
-    margin-right: auto; /* Push other items to the right */
-    gap:20px
-}
-
-.nav h1 {
-    margin: 0; /* Remove default margin */
-    font-size: 24px; /* Adjust font size */
-    cursor: pointer; /* Change cursor on hover */
-    transition: color 0.3s; /* Smooth transition for hover effect */
-}
-
-.nav h1:hover {
-    text-decoration: underline; /* Underline on hover */
-    color: #ffcc00; /* Change color on hover for visual feedback */
-}
-.logo{
-    width: 70px;
-    height: 70px;
-    border-radius: 40px;
-    margin-right: 20px;
-}
-.nav-right {
-    margin-left: auto; /* Pushes this section to the right */
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 20px 5%;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+.nav-left, .nav-right {
+    display: flex;
+    align-items: center;
     gap: 20px;
 }
+
+.logo {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}
+
+.nav h1 {
+    font-size: 24px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.nav h1:hover {
+    color: #ffcc00;
+}
+
 a {
     text-decoration: none;
-    color:white;
-  }
-  /* Sidebar styles */
-/* Sidebar styles */
-/* Sidebar styles */
+    color: white;
+}
+
+.menu-icon {
+    font-size: 30px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.menu-icon:hover {
+    color: #ffcc00;
+}
+
 .sidebar {
-    height: 100%; /* Full-height */
-    width: 0; /* Hidden by default */
-    position: fixed; /* Fixed sidebar */
-    z-index: 3; /* Above other content */
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1001;
     top: 0;
-    right: 0; /* Align to right */
-    background-color: rgba(30, 30, 30, 0.95); /* Darker, more modern background */
-    overflow-x: hidden; /* Disable horizontal scroll */
-    transition: 0.4s ease; /* Smooth slide-in/out */
-    padding-top: 60px; /* Padding at top */
-    box-shadow: -4px 0 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    right: 0;
+    background-color: rgba(30, 30, 30, 0.95);
+    overflow-x: hidden;
+    transition: 0.4s;
+    padding-top: 60px;
+    box-shadow: -4px 0 8px rgba(0, 0, 0, 0.2);
 }
 
 .sidebar a {
     padding: 15px 30px;
     text-decoration: none;
-    font-size: 22px; /* Slightly smaller text for elegance */
+    font-size: 22px;
     color: white;
-    display: block; /* Each item is on a new line */
-    transition: color 0.3s, background-color 0.3s; /* Smooth hover effects */
+    display: block;
+    transition: 0.3s;
 }
 
 .sidebar a:hover {
-    background-color: rgba(255, 204, 0, 0.2); /* Highlight background on hover */
-    color: #ffcc00; /* Change text color on hover */
-    padding-left: 40px; /* Smooth slide-in effect on hover */
+    background-color: rgba(255, 204, 0, 0.2);
+    color: #ffcc00;
+    padding-left: 40px;
 }
 
 .sidebar .closebtn {
@@ -115,54 +122,95 @@ a {
     right: 25px;
     font-size: 36px;
     cursor: pointer;
-    color: white;
-    transition: color 0.3s ease; /* Smooth hover effect */
 }
 
-.sidebar .closebtn:hover {
-    color: #ffcc00; /* Highlight the close button on hover */
-}
-
-/* Menu button styles */
-.menu-icon {
-    font-size: 30px; /* Size of the icon */
-    background: none;
-    border: none;
-    color: white;
-    cursor: pointer;
-    transition: color 0.3s ease; /* Smooth hover effect */
-}
-
-.menu-icon:hover {
-    color: #ffcc00; /* Change color on hover */
-}
 .portfolio-submenu {
-    padding-left: 20px; /* Indent submenu */
-    margin-top: 10px;   /* Space above the submenu */
+    display: none;
+    padding-left: 20px;
 }
 
 .portfolio-submenu a {
-    display: block;      /* Stack links vertically */
-    color: #333;        /* Text color */
-    text-decoration: none; /* Remove underline */
-    margin: 5px 0;     /* Space between links */
+    font-size: 18px;
 }
 
-.portfolio-submenu a:hover {
-    text-decoration: underline; /* Underline on hover */
-}
-.additional-content {
-    opacity: 0; /* Initially hidden */
-    transition: opacity 0.5s ease; /* Smooth fade-in effect */
-    padding: 20px;
-    margin: 20px;
-    background-color: rgba(255, 255, 255, 0.8); /* Background for readability */
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow */
-    max-width: 800px; /* Limiting width */
-    margin: 40px auto; /* Centering */
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    text-align: center;
+    padding: 0 20px;
 }
 
-.visible {
-    opacity: 1; /* Visible when scrolled */
+.main-title {
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s ease forwards 0.5s;
+}
+
+.main-subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s ease forwards 0.7s;
+}
+
+.cta-button {
+    background-color: #ffcc00;
+    color: black;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s ease forwards 0.9s;
+}
+
+.cta-button:hover {
+    background-color: #ffd633;
+    transform: translateY(-3px);
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .nav {
+        padding: 15px 5%;
+    }
+
+    .logo {
+        width: 50px;
+        height: 50px;
+    }
+
+    .nav h1 {
+        font-size: 20px;
+    }
+
+    .main-title {
+        font-size: 2.5rem;
+    }
+
+    .main-subtitle {
+        font-size: 1.2rem;
+    }
+
+    .cta-button {
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
 }

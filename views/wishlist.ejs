@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DesignSpace - Your Wishlist</title>
+    <link rel="stylesheet" href="/stylesheets/portfolio.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .wishlist-container {
+            width: 100%;
+            overflow-x: auto;
+            padding: 2rem 0;
+        }
+        .wishlist-grid {
+            display: flex;
+            gap: 2rem;
+            padding: 0 2rem;
+            min-width: max-content;
+        }
+        .wishlist-item {
+            flex: 0 0 300px;
+            background-color: #1b1919;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        .wishlist-item:hover {
+            transform: translateY(-5px);
+        }
+        .wishlist-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .wishlist-item-content {
+            padding: 1rem;
+        }
+        .wishlist-item h2 {
+            margin: 0 0 0.5rem;
+            font-size: 1.2rem;
+        }
+        .wishlist-item p {
+            margin: 0 0 1rem;
+            font-size: 0.9rem;
+            color: #666;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .remove-btn {
+            background: none;
+            border: none;
+            color: #ff4136;
+            cursor: pointer;
+            font-size: 1.2rem;
+            padding: 0.5rem;
+            transition: color 0.3s ease;
+        }
+        .remove-btn:hover {
+            color: #d50000;
+        }
+        .empty-wishlist {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-left">
+            <img class="logo" src="/images/Untitled.png" alt="DesignSpace Logo">
+            <h1>DesignSpace</h1>
+        </div>
+        <div class="nav-right">
+            <a href="/" class="nav-link">Home</a>
+            <a href="/contact" class="nav-link">Contact</a>
+            <% if (user) { %>
+                <div class="user-menu">
+                    <div class="user-avatar">
+                        <%= user.username.charAt(0).toUpperCase() %>
+                    </div>
+                    <div class="user-dropdown">
+                        <span class="username"><%= user.username %></span>
+                        <a href="/wishlist" class="nav-link">Wishlist</a>
+                        <a href="/logout" class="logout-link">Logout</a>
+                    </div>
+                </div>
+            <% } else { %>
+                <a href="/login" class="nav-link">Login</a>
+            <% } %>
+        </div>
+    </nav>
+
+    <main>
+        <h1 class="page-title">Your Wishlist</h1>
+        <% if (wishlist && wishlist.length > 0) { %>
+            <div class="wishlist-container">
+                <div class="wishlist-grid">
+                    <% wishlist.forEach(item => { %>
+                        <div class="wishlist-item">
+                            <img src="/images/uploads/<%= item.post.image %>" alt="<%= item.post.title %>">
+                            <div class="wishlist-item-content">
+                                <h2><%= item.post.title %></h2>
+                                <p><%= item.post.description %></p>
+                                <button class="remove-btn" data-post-id="<%= item.post._id %>">
+                                    <i class="fas fa-trash-alt"></i>
+                                    <span class="sr-only">Remove from wishlist</span>
+                                </button>
+                            </div>
+                        </div>
+                    <% }) %>
+                </div>
+            </div>
+        <% } else { %>
+            <p class="empty-wishlist">Your wishlist is empty. <a href="/">Explore our designs</a> to add some!</p>
+        <% } %>
+    </main>
+
+    <script>
+        document.querySelectorAll('.remove-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const postId = button.getAttribute('data-post-id');
+                const wishlistItem = button.closest('.wishlist-item');
+
+                fetch('/wishlist/remove', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ postId }),
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            wishlistItem.remove();
+                            if (document.querySelectorAll('.wishlist-item').length === 0) {
+                                location.reload();
+                            }
+                        } else {
+                            alert(data.message || 'Could not remove from Wishlist');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error removing from wishlist:', error);
+                        alert('An error occurred. Please try again.');
+                    });
+            });
+        });
+    </script>
+</body>
+</html>

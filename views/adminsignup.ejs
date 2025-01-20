@@ -1,71 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Signup</title>
-  <link rel="stylesheet" type="text/css" href="/stylesheets/usersup.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DesignSpace - Admin Signup</title>
+    <link rel="stylesheet" href="/stylesheets/usersup.css">
+    <link rel="preload" href="/stylesheets/usersup.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/stylesheets/usersup.css"></noscript>
 </head>
 <body>
+    <div class="background"></div>
     
-    <!-- Form -->
-    <form action="/adminsignup" class="form" method="post">
-        <!-- First Name -->
-        <div class="group">
-            <div class="col-1">
-                <label for="name">Username</label>
+    <main class="content">
+        <div class="signup-card">
+            <div class="logo-container">
+                <img src="/images/Untitled.png" alt="DesignSpace Logo" class="logo">
+                <h1 class="brand-name">DesignSpace</h1>
             </div>
-            <div class="col-2">
-                <input type="text" id="name" name="username" placeholder="Username" />
+            <h2 class="card-title">Admin Signup</h2>
+            <form action="/adminsignup" method="post" class="signup-form">
+                <div class="form-group">
+                    <input type="text" id="username" name="username" required placeholder="Username">
+                </div>
+                <div class="form-group">
+                    <input type="email" id="email" name="email" required placeholder="Email">
+                </div>
+                <div class="form-group">
+                    <input type="tel" id="contact" name="contact" required placeholder="Contact Number">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="password" name="password" required placeholder="Password">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="secretkey" name="secretkey" required placeholder="Secret Key">
+                </div>
+                <button type="submit" class="submit-btn">Sign Up</button>
+            </form>
+            <div class="divider">
+                <span>OR</span>
             </div>
-        </div>
-         <!-- Email -->
-        <div class="group">
-            <div class="col-1">
-                <label for="email">Email</label>
-            </div>
-            <div class="col-2">
-                <input type="email" id="email" name="email" placeholder="example@email.com" />
-            </div>
-        </div>
-        
-        <!--contact NO-->
-        <div class="group">
-            <div class="col-1">
-                <label for="contact">contact NO.</label>
-            </div>
-            <div class="col-2">
-                <input type="text" id="contact" name="contact" placeholder="+91" />
-            </div>
-        </div>
-
-        <!-- Password -->
-        <div class="group">
-            <div class="col-1">
-                <label for="password">Password</label>
-            </div>
-            <div class="col-2">
-                <input type="password" id="password" name="password" placeholder="password" />
+            <div class="login-link">
+                <a href="/adminlogin">Already have an account? Log in</a>
             </div>
         </div>
-        <div class="group">
-            <div class="col-1">
-                <label for="contact">Secret Key</label>
-            </div>
-            <div class="col-2">
-                <input type="password" id="password" name="secretkey" placeholder="SecretKey" />
-            </div>
-        </div>
-        <div class="center-link">
-        <h4>------------------------------OR------------------------------</h4>
-    </div>
-</div>
-<div class="center-link">
-    <a href="/adminlogin"><h4>Already have an account</h4></a>
-</div>
-        
-        <!-- Submit button -->
-        <input type="submit" class="submit" value="submit" />
-    </form>
+    </main>
 </body>
 </html>

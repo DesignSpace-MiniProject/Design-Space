@@ -1,20 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>User or Admin</title>
-<link rel="stylesheet" href="/stylesheets/choose.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DesignSpace - Choose User Type</title>
+    <link rel="stylesheet" href="/stylesheets/choose.css">
+    <link rel="preload" href="/stylesheets/choose.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/stylesheets/choose.css"></noscript>
 </head>
 <body>
-    <h1 class="head">Who are you?</h1>
-    <div class="cursor typewriter-animation">
-        If you are a regular user, please click "User".<br>
-        If you are an administrator, please click "Admin".
-    </div>
-    <div class="button-container">
-        <button class="button user-button" onclick="location.href='/userlogin'">User</button>
-        <button class="button admin-button" onclick="location.href='/adminlogin'">Admin</button>
-      </div>
+    <div class="background"></div>
+    
+    <nav class="nav">
+        <div class="nav-left">
+            <img class="logo" src="/images/Untitled.png" alt="DesignSpace Logo">
+            <h1>DesignSpace</h1>
+        </div>
+    </nav>
+
+    <main class="content">
+        <h1 class="main-title">Who are you?</h1>
+        <div class="cursor typewriter-animation">
+            If you are a regular user, please click "User".<br>
+            If you are an administrator, please click "Admin".
+        </div>
+        <div class="button-container">
+            <button class="cta-button user-button" onclick="location.href='/userlogin'">User</button>
+            <button class="cta-button admin-button" onclick="location.href='/adminlogin'">Admin</button>
+        </div>
+    </main>
 </body>
 </html>

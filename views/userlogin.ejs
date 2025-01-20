@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DesignSpace - Admin Login</title>
+    <title>DesignSpace - User Login</title>
     <link rel="stylesheet" href="/stylesheets/login.css">
     <link rel="preload" href="/stylesheets/login.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="/stylesheets/login.css"></noscript>
@@ -17,24 +17,22 @@
                 <img src="/images/Untitled.png" alt="DesignSpace Logo" class="logo">
                 <h1 class="brand-name">DesignSpace</h1>
             </div>
-            <h2 class="card-title">Admin Login</h2>
-            <form action="/adminlogin" method="post" class="login-form">
+            <h2 class="card-title">User Login</h2>
+            <form action="/userlogin" method="post" class="login-form">
                 <div class="form-group">
                     <input type="text" id="username" name="username" required placeholder="Username">
                 </div>
                 <div class="form-group">
                     <input type="password" id="password" name="password" required placeholder="Password">
                 </div>
-                <div class="form-group">
-                    <input type="password" id="secretkey" name="secretkey" required placeholder="Secret Key">
-                </div>
+              
                 <button type="submit" class="submit-btn">Login</button>
             </form>
             <div class="divider">
                 <span>OR</span>
             </div>
             <div class="signup-link">
-                <a href="/adminsignup">Don't have an account? Sign up</a>
+                <a href="/usersignup">Don't have an account? Sign up</a>
             </div>
         </div>
     </main>

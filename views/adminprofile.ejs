@@ -3,104 +3,117 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Profile</title>
+  <title>DesignSpace - Admin Profile</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
   <link rel="stylesheet" href="/stylesheets/adminprofile.css">
 </head>
 <body>
-  <div class="profile-container">
-    <!-- Admin Info -->
-    <div class="profile-info">
-      <h2>Welcome, <%= admin.username %></h2>
-      <p>Email: <%= admin.email %></p>
-      <p>Contact: <%= admin.contact %></p>
-      <a href="/choose">Logout</a>
+  <div class="background"></div>
+  
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="/images/Untitled.png" alt="DesignSpace Logo" class="logo">
+        DesignSpace
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/messages">
+              <i class="bi bi-envelope-fill"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/choose">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container mt-4">
+    <div class="row">
+      <div class="col-md-4 mb-4">
+        <div class="card profile-card">
+          <div class="card-body">
+            <h2 class="card-title">Welcome, <%= admin.username %></h2>
+            <p class="card-text">Contact: <%= admin.contact %></p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-8 mb-4">
+        <div class="card upload-card">
+          <div class="card-body">
+            <h3 class="card-title text-center mb-4">Upload Portfolio</h3>
+            <form action="/createpost" method="POST" enctype="multipart/form-data">
+              <div class="mb-3">
+                <label for="title" class="form-label">Post Title</label>
+                <input type="text" name="title" id="title" class="form-control" placeholder="Enter the title" required>
+              </div>
+              <div class="mb-3">
+                <label for="description" class="form-label">Post Description</label>
+                <textarea name="description" id="description" class="form-control" rows="4" placeholder="Enter the description" required></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="postimage" class="form-label">Upload Image</label>
+                <input type="file" name="postimage" id="postimage" class="form-control" required>
+              </div>
+              <div class="mb-3">
+                <label for="category" class="form-label">Category</label>
+                <select name="category" id="category" class="form-select" required>
+                  <option value="residential">Residential</option>
+                  <option value="commercial">Commercial</option>
+                  <option value="conservation">Conservation</option>
+                </select>
+              </div>
+              <button type="submit" class="btn btn-primary w-100">Submit Post</button>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <!-- Upload Portfolio Section -->
-    <div class="upload-portfolio">
-      <h3>Upload Portfolio</h3>
-      <form action="/createpost" method="POST" enctype="multipart/form-data">
-        <label for="title">Post Title:</label>
-        <input type="text" name="title" id="title" required><br>
-    
-        <label for="description">Post Description:</label>
-        <textarea name="description" id="description" required></textarea><br>
-    
-        <label for="postimage">Upload Image:</label>
-        <input type="file" name="postimage" id="postimage" required><br>
-    
-        <label for="category">Category:</label>
-        <select name="category" id="category" required>
-            <option value="residential">Residential</option>
-            <option value="commercial">Commercial</option>
-            <option value="conservation">Conservation</option>
-        </select><br>
-    
-        <button type="submit">Submit Post</button>
-      </form>
-    </div>
-
-    <!-- Displaying Uploaded Posts -->
     <% if (residentialPosts.length || commercialPosts.length || conservationPosts.length) { %>
-      <!-- Residential Section -->
-      <% if (residentialPosts.length) { %>
-        <div class="section residential">
-          <h2>Residential</h2>
-          <div class="posts">
-            <% residentialPosts.forEach(function(post) { %>
-              <div class="post">
-                <img src="/images/uploads/<%= post.image %>" alt="<%= post.title %>" />
-                <h3><%= post.title %></h3>
-                <p><%= post.description %></p>
-                <a href="#">Go to Residential Section</a>
-              </div>
-            <% }); %>
-          </div>
-        </div>
-      <% } else { %>
-        <p>No Residential Posts Available</p>
-      <% } %>
+      <% const categories = [
+        { name: 'Residential', posts: residentialPosts },
+        { name: 'Commercial', posts: commercialPosts },
+        { name: 'Conservation', posts: conservationPosts }
+      ] %>
 
-      <!-- Commercial Section -->
-      <% if (commercialPosts.length) { %>
-        <div class="section commercial">
-          <h2>Commercial</h2>
-          <div class="posts">
-            <% commercialPosts.forEach(function(post) { %>
-              <div class="post">
-                <img src="/images/uploads/<%= post.image %>" alt="<%= post.title %>" />
-                <h3><%= post.title %></h3>
-                <p><%= post.description %></p>
-                <a href="#">Go to Commercial Section</a>
-              </div>
-            <% }); %>
-          </div>
-        </div>
-      <% } else { %>
-        <p>No Commercial Posts Available</p>
-      <% } %>
-
-      <!-- Conservation Section -->
-      <% if (conservationPosts.length) { %>
-        <div class="section conservation">
-          <h2>Conservation</h2>
-          <div class="posts">
-            <% conservationPosts.forEach(function(post) { %>
-              <div class="post">
-                <img src="/images/uploads/<%= post.image %>" alt="<%= post.title %>" />
-                <h3><%= post.title %></h3>
-                <p><%= post.description %></p>
-                <a href="#">Go to Conservation Section</a>
-              </div>
-            <% }); %>
-          </div>
-        </div>
-      <% } else { %>
-        <p>No Conservation Posts Available</p>
-      <% } %>
+      <% categories.forEach(function(category) { %>
+        <% if (category.posts.length) { %>
+          <section class="mt-5">
+            <h2 class="text-center mb-4"><%= category.name %> Projects</h2>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+              <% category.posts.forEach(function(post) { %>
+                <div class="col">
+                  <div class="card h-100 project-card">
+                    <img src="/images/uploads/<%= post.image %>" class="card-img-top" alt="<%= post.title %>">
+                    <div class="card-body">
+                      <h5 class="card-title"><%= post.title %></h5>
+                      <p class="card-text"><%= post.description %></p>
+                    </div>
+                    <div class="card-footer">
+                      <a href="#" class="btn btn-primary w-100">View Details</a>
+                    </div>
+                  </div>
+                </div>
+              <% }); %>
+            </div>
+          </section>
+        <% } %>
+      <% }); %>
     <% } else { %>
-      <p>No posts available in any category.</p>
+      <p class="text-center mt-5">No posts available in any category.</p>
     <% } %>
-  </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+

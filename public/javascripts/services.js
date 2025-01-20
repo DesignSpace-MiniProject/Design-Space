@@ -6,12 +6,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const portfolioSubmenu = document.getElementById('portfolio-submenu');
 
     menuToggle.addEventListener('click', function() {
-        sidebar.style.width = '300px';
+        sidebar.style.width = '250px';
     });
 
     closeMenu.addEventListener('click', function() {
         sidebar.style.width = '0';
-        portfolioSubmenu.style.display = 'none';
     });
 
     portfolioLink.addEventListener('click', function(e) {
@@ -19,11 +18,19 @@ document.addEventListener('DOMContentLoaded', function() {
         portfolioSubmenu.style.display = portfolioSubmenu.style.display === 'block' ? 'none' : 'block';
     });
 
-    // Close the sidebar when clicking outside of it
-    document.addEventListener('click', function(event) {
-        if (!sidebar.contains(event.target) && event.target !== menuToggle) {
+    // Close sidebar when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!sidebar.contains(e.target) && e.target !== menuToggle) {
             sidebar.style.width = '0';
-            portfolioSubmenu.style.display = 'none';
         }
     });
+
+    // Smooth scroll for service cards
+    const serviceCards = document.querySelectorAll('.service-card');
+    serviceCards.forEach(card => {
+        card.addEventListener('click', () => {
+            card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+    });
 });
+

@@ -1,60 +1,122 @@
-/* adminprofile.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
 body {
-  font-family: Arial, sans-serif;
-  padding: 20px;
+  font-family: 'Poppins', sans-serif;
+  background-color: #0c0c0c;
+  color: #ffffff;
+  min-height: 100vh;
 }
 
-h1 {
-  text-align: center;
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('/images/modern-minimalist-office.jpg');
+  background-position: center;
+  background-size: cover;
+  filter: blur(8px);
+  opacity: 0.4;
+  z-index: -1;
+  animation: zoomBackground 20s ease-in-out infinite;
 }
 
-.section {
-  margin-top: 40px;
+@keyframes zoomBackground {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
 }
 
-.section h2 {
-  text-align: center;
-  font-size: 24px;
-  margin-bottom: 20px;
+.navbar {
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
 }
 
-.posts {
+.navbar-brand {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+  align-items: center;
+  font-weight: 700;
+  color: #ffffff;
 }
 
-.post {
-  width: 30%;
-  padding: 10px;
-  box-sizing: border-box;
-  margin-bottom: 20px;
+.logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
 }
 
-.post img {
-  width: 100%;
-  height: auto;
+.card {
+  background-color: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #ffffff;
 }
 
-.post h3 {
-  text-align: center;
-  font-size: 20px;
+.profile-card, .upload-card {
+  margin-bottom: 2rem;
 }
 
-.post p {
-  text-align: center;
-  font-size: 16px;
+.card-title {
+  color: #ffcc00;
 }
 
-.post a {
-  display: block;
-  text-align: center;
-  margin-top: 10px;
-  font-size: 14px;
-  color: #007BFF;
-  text-decoration: none;
+.form-control, .form-select {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: #ffffff;
 }
 
-.post a:hover {
-  text-decoration: underline;
+.form-control:focus, .form-select:focus {
+  background-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 0 2px rgba(255, 204, 0, 0.5);
+  color: #ffffff;
 }
+
+.form-control::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.btn-primary {
+  background-color: #ffcc00;
+  border-color: #ffcc00;
+  color: #000000;
+  font-weight: 600;
+}
+
+.btn-primary:hover, .btn-primary:focus {
+  background-color: #ffd633;
+  border-color: #ffd633;
+  color: #000000;
+}
+
+.project-card {
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 15px rgba(255, 204, 0, 0.2);
+}
+
+.project-card img {
+  height: 200px;
+  object-fit: cover;
+}
+
+h2 {
+  color: #ffcc00;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .card {
+    margin-bottom: 1rem;
+  }
+}
+
+.nav-link .bi-envelope-fill {
+  font-size: 1.2rem;
+}
+

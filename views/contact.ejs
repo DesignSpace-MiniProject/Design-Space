@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DesignSpace - Contact Us</title>
+    <link rel="stylesheet" href="/stylesheets/contact.css">
+    <link rel="preload" href="/stylesheets/contact.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/stylesheets/contact.css"></noscript>
+</head>
+<body>
+    <div class="background"></div>
+    
+    <nav class="nav">
+        <div class="nav-left">
+            <img class="logo" src="/images/Untitled.png" alt="DesignSpace Logo">
+            <h1>DesignSpace</h1>
+        </div>
+        <div class="nav-right">
+            <a href="/home" class="nav-link">Home</a>
+            <a href="/about" class="nav-link">About</a>
+        
+            <a href="/choose" class="nav-link">Login</a>
+        </div>
+    </nav>
+
+    <main class="content">
+        <section class="contact-section">
+            <h2 class="section-title">Contact Us</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Get in Touch</h3>
+                    <p>We'd love to hear from you. Feel free to reach out with any questions or inquiries.</p>
+                    <ul class="contact-details">
+                        <li><strong>Address:</strong> SIT, Tumkur, Karnataka</li>
+                        <li><strong>Phone:</strong> 8217574392</li>
+                        <li><strong>Email:</strong> info@designspace.com</li>
+                    </ul>
+                    <div class="social-links">
+                        <a href="#" class="social-link">Facebook</a>
+                        <a href="#" class="social-link">Instagram</a>
+                        <a href="#" class="social-link">LinkedIn</a>
+                    </div>
+                </div>
+                <form class="contact-form" action="/submit-contact" method="POST">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 DesignSpace. All rights reserved.</p>
+    </footer>
+</body>
+</html>

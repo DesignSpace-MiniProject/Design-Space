@@ -1,10 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Anonymous+Pro&display=swap');
 
-@import url(https://fonts.googleapis.com/css?family=Anonymous+Pro);
-
-body{
-    background: #111 url("https://wallpapercave.com/wp/wp2732972.jpg") repeat 0 0;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
+
+body {
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    color: white;
+}
+
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('/images/minimalist-black-interior-with-black-sofa.jpg');
+    background-position: center;
+    background-size: cover;
+    filter: blur(0px);
+    z-index: -1;
+    animation: zoomBackground 15s ease-in-out infinite;
+}
+
+@keyframes zoomBackground {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}
+
+.nav h1 {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.main-title {
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s ease forwards 0.5s;
+}
+
 .cursor {
+    font-family: 'Anonymous Pro', monospace;
     position: relative;
     max-width: 800px; 
     margin: 1em auto; 
@@ -17,56 +96,103 @@ body{
 }
 
 .typewriter-animation {
-  animation: 
-    typewriter 5s steps(50) 1s 1 normal both, 
-    blinkingCursor 500ms steps(50) infinite normal;
-}
-@keyframes typewriter {
-  from { width: 0; }
-  to { width: 100%; }
-}
-@keyframes blinkingCursor{
-  from { border-right-color: rgba(255,255,255,.75); }
-  to { border-right-color: transparent; }
+    animation: 
+        typewriter 5s steps(50) 1s 1 normal both, 
+        blinkingCursor 500ms steps(50) infinite normal;
 }
 
-.head{
-    display: flex;
-    justify-content: center;
+@keyframes typewriter {
+    from { width: 0; }
+    to { width: 100%; }
 }
+
+@keyframes blinkingCursor {
+    from { border-right-color: rgba(255,255,255,.75); }
+    to { border-right-color: transparent; }
+}
+
 .button-container {
     margin-top: 40px;
     display: flex;
     gap: 30px;
     justify-content: center;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s ease forwards 1.5s;
 }
 
-.button {
-    padding: 15px 40px;
-    font-size: 1.2em;
-    font-weight: 600;
+.cta-button {
+    background-color: #ffcc00;
+    color: black;
     border: none;
-    border-radius: 10px;
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border-radius: 50px;
     cursor: pointer;
-    transition: transform 0.3s, box-shadow 0.3s, opacity 0.3s;
+    transition: background-color 0.3s, transform 0.3s;
     text-transform: uppercase;
     letter-spacing: 2px;
-    color: white;
 }
 
 .user-button {
-    background-color: #007bff;
+    background-color: #ffcc00;
+    color: white;
 }
 
 .admin-button {
-    background-color: #cd2525;
+    background-color: #ffcc00;
+    color: white;
 }
 
-.button:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-    opacity: 0.9;
+.cta-button:hover {
+    transform: translateY(-3px);
 }
 
+.user-button:hover {
+    background-color: #202018;
+}
 
-body { margin-top: 4em; padding: 5em; color: #f1f1f1; font-family: 'Anonymous Pro', monospace;background-color: #0c0b0d; }
+.admin-button:hover {
+    background-color: #202018;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .nav {
+        padding: 15px 5%;
+    }
+
+    .logo {
+        width: 50px;
+        height: 50px;
+    }
+
+    .nav h1 {
+        font-size: 20px;
+    }
+
+    .main-title {
+        font-size: 2.5rem;
+    }
+
+    .cursor {
+        font-size: 1.4em;
+    }
+
+    .cta-button {
+        font-size: 1rem;
+        padding: 12px 30px;
+    }
+
+    .button-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+}
